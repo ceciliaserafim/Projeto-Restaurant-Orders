@@ -1,6 +1,14 @@
-from src.models.ingredient import Ingredient  # noqa: F401, E261, E501
+from src.models.ingredient import Ingredient, Restriction
 
 
-# Req 1
 def test_ingredient():
-    pass
+    wheat_flour = Ingredient("farinha")
+    tomato = Ingredient("tomate")
+    expected_ing = Ingredient("tomate")
+
+    assert tomato == expected_ing
+    assert tomato.name == "tomate"
+    assert str(tomato) == "Ingredient('tomate')"
+    assert hash(tomato) == hash(expected_ing)
+    assert hash(tomato) != hash(Ingredient("presunto"))
+    assert wheat_flour.restrictions == {Restriction.GLUTEN}
